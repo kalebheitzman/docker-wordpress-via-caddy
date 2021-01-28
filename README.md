@@ -21,3 +21,15 @@ docker-compose up -d
 **Step 4:** Set up a staging environment.
 
 **Step 5:** Set up a production environment.
+
+## Caddyfile
+
+This stack uses Caddy to serve WordPress. Create a Caddyfile in your environment using the following syntax. This example is for intercepting all port :80 traffic. Change :80 to your domain, for example https://example.com.
+
+```
+:80 {
+    root * /var/www/html
+    php_fastcgi wordpress:9000
+    file_server
+}
+```
