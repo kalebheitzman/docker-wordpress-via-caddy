@@ -33,3 +33,14 @@ This stack uses Caddy to serve WordPress. Create a Caddyfile in your environment
     file_server
 }
 ```
+
+## Importing a database
+
+Database imports should always be one way and you should never import data once in production. You never import development data into staging and you never import staging data into production. Data should follow this path: Production -> Staging -> Development.
+
+You can import data into your development or staging environment by creating a _data/import_ folder and moving your sql (not gzipped) to this directory. Running docker-compose will automatically import and overwrite the data into your database.
+
+```
+./data/import/local.sql
+docker-compose up -d
+```
